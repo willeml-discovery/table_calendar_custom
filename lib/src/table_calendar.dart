@@ -573,7 +573,13 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
     final isOutside = day.month != focusedDay.month;
 
     if (isOutside && _shouldBlockOutsideDays) {
-      return Container();
+      return Semantics(
+        enabled: false,
+        focusable: false,
+        hidden: true,
+        blockUserActions: true,
+        child: Container(),
+      );
     }
 
     return LayoutBuilder(
