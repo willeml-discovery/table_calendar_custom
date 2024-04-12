@@ -168,7 +168,7 @@ class CellContent extends StatelessWidget {
     }
 
     return Semantics(
-      label: semanticsLabel,
+      label: isDisabled ? '' : semanticsLabel,
       excludeSemantics: true,
       child: cell,
     );
