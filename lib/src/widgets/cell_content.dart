@@ -56,6 +56,10 @@ class CellContent extends StatelessWidget {
       return Semantics(
         label: isDisabled ? '' : semanticsLabel,
         excludeSemantics: true,
+        focusable: !isDisabled,
+        enabled: !isDisabled,
+        hidden: isDisabled,
+        blockUserActions: isDisabled,
         child: cell,
       );
     }
@@ -170,6 +174,10 @@ class CellContent extends StatelessWidget {
     return Semantics(
       label: isDisabled ? '' : semanticsLabel,
       excludeSemantics: true,
+      focusable: !isDisabled,
+      enabled: !isDisabled,
+      hidden: isDisabled,
+      blockUserActions: isDisabled,
       child: cell,
     );
   }
