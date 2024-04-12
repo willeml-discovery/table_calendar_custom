@@ -54,7 +54,7 @@ class CellContent extends StatelessWidget {
 
     if (cell != null) {
       return Semantics(
-        label: semanticsLabel,
+        label: isDisabled ? '' : semanticsLabel,
         excludeSemantics: true,
         child: cell,
       );
@@ -67,22 +67,15 @@ class CellContent extends StatelessWidget {
     final duration = const Duration(milliseconds: 250);
 
     if (isDisabled) {
-      cell = Semantics(
-        enabled: false,
-        hidden: true,
-        blockUserActions: true,
-        focusable: false,
-        child:
-            calendarBuilders.disabledBuilder?.call(context, day, focusedDay) ??
-                AnimatedContainer(
-                  duration: duration,
-                  margin: margin,
-                  padding: padding,
-                  decoration: calendarStyle.disabledDecoration,
-                  alignment: alignment,
-                  child: Text(text, style: calendarStyle.disabledTextStyle),
-                ),
-      );
+      cell = calendarBuilders.disabledBuilder?.call(context, day, focusedDay) ??
+          AnimatedContainer(
+            duration: duration,
+            margin: margin,
+            padding: padding,
+            decoration: calendarStyle.disabledDecoration,
+            alignment: alignment,
+            child: Text(text, style: calendarStyle.disabledTextStyle),
+          );
     } else if (isSelected) {
       cell = calendarBuilders.selectedBuilder?.call(context, day, focusedDay) ??
           AnimatedContainer(
