@@ -53,13 +53,15 @@ class CellContent extends StatelessWidget {
         calendarBuilders.prioritizedBuilder?.call(context, day, focusedDay);
 
     if (cell != null) {
+      if (isOutside) {
+        return ExcludeSemantics(child: cell);
+      }
       return Semantics(
-        label: isDisabled ? '' : semanticsLabel,
+        label: semanticsLabel,
         excludeSemantics: true,
         focusable: !isDisabled,
         enabled: !isDisabled,
-        hidden: isDisabled,
-        blockUserActions: isDisabled,
+        button: !isDisabled,
         child: cell,
       );
     }
@@ -171,13 +173,16 @@ class CellContent extends StatelessWidget {
           );
     }
 
+    if (isOutside) {
+      return ExcludeSemantics(child: cell);
+    }
+
     return Semantics(
-      label: isDisabled ? '' : semanticsLabel,
+      label: semanticsLabel,
       excludeSemantics: true,
       focusable: !isDisabled,
       enabled: !isDisabled,
-      hidden: isDisabled,
-      blockUserActions: isDisabled,
+      button: !isDisabled,
       child: cell,
     );
   }
