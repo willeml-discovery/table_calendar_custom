@@ -556,12 +556,19 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               return dowCell;
             },
             dayBuilder: (context, day, focusedMonth) {
-              return GestureDetector(
+              final isOutside = day.month != focusedMonth.month;
+              final cell = GestureDetector(
                 behavior: widget.dayHitTestBehavior,
                 onTap: () => _onDayTapped(day),
                 onLongPress: () => _onDayLongPressed(day),
                 child: _buildCell(day, focusedMonth),
               );
+
+              if (isOutside && _shouldBlockOutsideDays) {
+                return ExcludeSemantics(child: cell);
+              }
+
+              return cell;
             },
           ),
         ),
