@@ -1,3 +1,7 @@
+## [3.1.3]
+
+* Improved accessibility semantics so blank spaces and disabled dates are not focusable/read by VoiceOver and TalkBack
+
 ## [3.1.1]
 
 * Added cell text localization based on current locale
